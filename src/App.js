@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+import Data from './components/qwe/data'
+
 import './App.css';
 
 function App() {
+  const [state, setState] = useState([])
+  const [inputValue, setInputValue] = useState('')
+
+  useEffect(() => {
+    const API = `https://covid-api.mmediagroup.fr/v1/cases`
+    axios.get(API).then(({data}) => {
+      setState(data)
+    })
+  }, [])
+
+  if(inputValue) {
+    
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+        <Data items={state} />
     </div>
   );
 }
