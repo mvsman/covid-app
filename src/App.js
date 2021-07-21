@@ -4,9 +4,9 @@ import { Route } from 'react-router-dom';
 // import Data from './components/Data'
 import Header from './components/Header';
 import Nav from './components/Nav';
-import Description from './components/Description';
-import World from './components/World';
-import Country from './components/Country';
+import Description from './pages/Description';
+import World from './pages/World';
+import Country from './pages/Country';
 
 import './App.css';
 
