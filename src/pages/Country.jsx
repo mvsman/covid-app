@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import CountryInfo from './CountryInfo';
+import CountryInfo from '../components/CountryInfo';
+import CovidInfo from '../components/CovidInfo';
 
 function Country({ items }) {
   const [search, setSearch] = useState('');
@@ -42,25 +43,11 @@ function Country({ items }) {
             </ul>
           ) : null}
         </form>
-        {search &&
-          countryArr.map(
-            (elem, i) =>
-              elem.country === search && (
-                <div className="info-country">
-                  <p key={i}>Country: {elem.country}</p>
-                  <p key={i}>Capital city: {elem.capital_city}</p>
-                  <p key={i}>Continent: {elem.continent}</p>
-                  <p key={i}>Location: {elem.location}</p>
-                  <p key={i}>
-                    Square area: {elem.sq_km_area}km<sup>2</sup>
-                  </p>
-                </div>
-              ),
-          )}
+        <CountryInfo arr={countryArr} searching={search} />
       </div>
 
       <div className="page__country-info">
-        <CountryInfo arr={countryArr} searching={search} />
+        <CovidInfo arr={countryArr} searching={search} />
       </div>
     </div>
   );

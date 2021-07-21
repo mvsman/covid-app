@@ -1,4 +1,4 @@
-function CountryInfo({ arr, searching }) {
+function CovidInfo({ arr, searching }) {
   return (
     <div>
       {searching &&
@@ -37,4 +37,4 @@ function CountryInfo({ arr, searching }) {
   );
 }
 
-export default CountryInfo;
+export default CovidInfo;
