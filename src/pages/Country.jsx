@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import CountryInfo from '../components/CountryInfo';
 import CovidInfo from '../components/CovidInfo';
+import SelectionList from '../components/SelectionList';
 import useLocalStorage from '../UseLocalStorage';
 
 function Country({ items, multiSelect = false }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useLocalStorage('selection', []);
-  // const [selection, setSelection] = useState([]);
   const toggle = () => setOpen(!open);
   const ref = useRef(null);
 
@@ -39,8 +39,8 @@ function Country({ items, multiSelect = false }) {
     });
   }, []);
 
-  const close = (event) => {
-    if (!event.path.includes(ref.current)) {
+  const close = (e) => {
+    if (!e.path.includes(ref.current)) {
       setOpen(false);
     }
   };
@@ -71,19 +71,11 @@ function Country({ items, multiSelect = false }) {
             />
           </svg>
           {open && (
-            <div className="selection-list">
-              {filterArr.map((elem) => (
-                <div className="selection-item" key={elem.abbreviation}>
-                  <button
-                    className="selection-btn"
-                    type="button"
-                    onClick={() => handleOnClick(elem)}>
-                    <span>{elem.country}</span>
-                    <span>{selectionItem(elem) && 'selected'}</span>
-                  </button>
-                </div>
-              ))}
-            </div>
+            <SelectionList
+              arr={filterArr}
+              handleOnClick={handleOnClick}
+              selectionItem={selectionItem}
+            />
           )}
         </div>
         <CountryInfo selection={selection} />

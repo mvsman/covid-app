@@ -24,15 +24,22 @@ p {
   text-decoration: none;
 }
 
+img {
+  width: 12px;
+  height: 12px;
+}
+
+.App {
+  height: 100vh;
+}
+
 .header {
-  position: absolute;
-  left: 0;
-  top: 0;
   text-align: center;
   height: fit-content;
   width: 100%;
   color: #fff;
   background-color: rgb(20, 20, 20);
+  padding: 1px;
 }
 
 .container {
@@ -46,8 +53,7 @@ p {
   align-items: center;
   justify-content: center;
   height: fit-content;
-  margin-top: 100px;
-  margin-bottom: 20px;
+  margin: 30px 0;
   padding: 10px 0;
   background-color: #fff;
   box-shadow: 0px 0px 2px 0px #000;
@@ -59,16 +65,50 @@ p {
 }
 
 .nav__item {
+  font-weight: bold;
+  color: #000;
   margin: 0 5px;
+  padding: 5px 5px;
+}
+
+.underline {
+  position: relative;
+}
+.underline::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(0, 183, 255);
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .underline:hover::before {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+}
+
+.active {
+  transition: 0.3s all;
+  color: grey;
 }
 
 .page {
   width: 100%;
-  height: 100vh;
+  min-height: 500px;
   padding: 15px 30px;
   background-color: #fff;
   box-shadow: 0px 0px 2px 0px #000;
   border-radius: 7px;
+}
+
+.description p {
+  margin: 20px 0px;
+  text-align: justify;
 }
 
 .page__country {
@@ -77,6 +117,7 @@ p {
 }
 
 .page__country-search {
+  margin-right: 30px;
   padding-right: 30px;
   padding-top: 30px;
   border-right: 1px solid rgb(190, 190, 190);
@@ -125,8 +166,8 @@ p {
 }
 
 .info-country {
-  font-size: 14px;
-  padding: 15px 10px;
+  font-size: 16px;
+  padding: 15px 0px;
 }
 
 .info-country p {
@@ -139,14 +180,13 @@ p {
 }
 .info-item {
   font-weight: bold;
+  font-size: 21px;
   width: 50%;
-  max-height: 20%;
   padding-top: 30px;
   padding-bottom: 10px;
   padding-left: 10px;
   margin-bottom: 30px;
-  background-color: #ecfff4;
-  box-shadow: 0px 0px 1px 0px #000;
+  border-bottom: 1px solid #808080;
 }
 .population {
   color: #0095ff;
@@ -161,12 +201,8 @@ p {
   color: #888888;
 }
 
-/* ===================
-  SELECTION 
-*/
-
 .selection {
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -177,31 +213,20 @@ p {
   cursor: pointer;
 }
 .selection-list {
-  font-size: 14px;
   position: absolute;
   left: 0;
-  top: 26px;
+  top: 29px;
   width: 100%;
   box-shadow: 0px 0px 1px 0px #000;
   z-index: 1;
-  max-height: 114px;
+  max-height: 125px;
   height: auto;
   overflow: auto;
   background-color: #fff;
 }
 
-/* .selection-item {
-  padding: 3px 10px;
-  transition: 0.1s all;
-}
-
-.selection-item:hover {
-  background-color: aquamarine;
-  cursor: pointer;
-} */
-
 .selection-btn {
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   justify-content: space-between;
   padding: 3px 10px;

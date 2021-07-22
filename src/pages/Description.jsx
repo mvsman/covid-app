@@ -5,7 +5,7 @@ function Description({ items }) {
   const death = Math.floor(item.deaths / 1e6);
 
   return (
-    <div>
+    <div className="description">
       <p>
         Пандемия COVID-19 — текущая пандемия, вызванная распространением коронавируса SARS-CoV-2.
       </p>
