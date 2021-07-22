@@ -1,56 +1,109 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CountryInfo from '../components/CountryInfo';
 import CovidInfo from '../components/CovidInfo';
+import useLocalStorage from '../UseLocalStorage';
 
-function Country({ items }) {
-  const [search, setSearch] = useState('');
-  const [clear, setClear] = useState(true);
-  // const [state, setState] = useState(false);
+function Country({ items, multiSelect = false }) {
+  const [open, setOpen] = useState(false);
+  const [selection, setSelection] = useLocalStorage('selection', []);
+  // const [selection, setSelection] = useState([]);
+  const toggle = () => setOpen(!open);
+  const ref = useRef(null);
 
-  const countryArr = Object.values(items).map((el) => el.All);
+  function handleOnClick(elem) {
+    if (!selection.some((cur) => cur.abbreviation === elem.abbreviation)) {
+      if (!multiSelect) {
+        setSelection([elem]);
+      } else if (multiSelect) {
+        setSelection([...selection, elem]);
+      }
+    } else {
+      let selectionAfterRemove = selection;
+      selectionAfterRemove = selectionAfterRemove.filter(
+        (cur) => cur.abbreviation !== elem.abbreviation,
+      );
+      setSelection([...selectionAfterRemove]);
+    }
+  }
 
-  const filterCountryArr = countryArr.filter((elem) => {
-    return elem.country && elem.country.toLowerCase().startsWith(search.toLowerCase());
-  });
-  // console.log(countryArr);
-  const clickOnItem = (e) => {
-    setSearch(e.target.textContent);
-    setClear(!clear);
-    // setState(!state);
+  function selectionItem(elem) {
+    if (selection.find((cur) => cur.abbreviation === elem.abbreviation)) {
+      return true;
+    }
+    return false;
+  }
+
+  useEffect(() => {
+    ['click', 'touchend'].forEach((e) => {
+      document.addEventListener(e, close);
+    });
+  }, []);
+
+  const close = (event) => {
+    if (!event.path.includes(ref.current)) {
+      setOpen(false);
+    }
   };
 
-  const clickOnInput = () => setClear(true);
+  const filterArr = items.filter((elem) => elem.country);
 
   return (
     <div className="page__country">
       <div className="page__country-search">
-        <form className="search-form">
-          <input
-            className="search-input"
-            type="text"
-            placeholder="search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onClick={clickOnInput}
-          />
-          {search.length && clear ? (
-            <ul className="autocomplete">
-              {filterCountryArr.map((elem, i) => (
-                <li className="autocomplete__item" key={i} onClick={clickOnItem}>
-                  {elem.country}
-                </li>
+        <div
+          className="selection"
+          tabIndex={0}
+          role="button"
+          onKeyPress={() => toggle(!open)}
+          onClick={() => toggle(!open)}
+          ref={ref}>
+          {selection.length ? selection.map((elem) => elem.country) : 'menu'}
+          <svg
+            className={open ? '' : 'rotated'}
+            width="8"
+            height="5"
+            viewBox="0 0 10 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
+              fill="#2C2C2C"
+            />
+          </svg>
+          {open && (
+            <div className="selection-list">
+              {filterArr.map((elem) => (
+                <div className="selection-item" key={elem.abbreviation}>
+                  <button
+                    className="selection-btn"
+                    type="button"
+                    onClick={() => handleOnClick(elem)}>
+                    <span>{elem.country}</span>
+                    <span>{selectionItem(elem) && 'selected'}</span>
+                  </button>
+                </div>
               ))}
-            </ul>
-          ) : null}
-        </form>
-        <CountryInfo arr={countryArr} searching={search} />
+            </div>
+          )}
+        </div>
+        <CountryInfo selection={selection} />
       </div>
-
-      <div className="page__country-info">
-        <CovidInfo arr={countryArr} searching={search} />
+      <div>
+        <CovidInfo selection={selection} />
       </div>
     </div>
   );
 }
 
+/* {worldArr.map(
+        (elem) =>
+          elem.population > 7e9 && (
+            <div>
+              <div>{elem.population}</div>
+              <div>{elem.confirmed}</div>
+              <div>{elem.recovered}</div>
+              <div>{elem.deaths}</div>
+            </div>
+          ),
+      )} */
 export default Country;

@@ -1,6 +1,5 @@
 function Description({ items }) {
-  const descArr = Object.values(items).map((el) => el.All);
-  const item = { ...descArr[descArr.length - 1] };
+  const item = { ...items[items.length - 1] };
   const confirm = Math.floor(item.confirmed / 1e6);
   const recover = Math.floor(item.recovered / 1e6);
   const death = Math.floor(item.deaths / 1e6);

@@ -5,8 +5,8 @@ import { Route } from 'react-router-dom';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Description from './pages/Description';
-import World from './pages/World';
 import Country from './pages/Country';
+import World from './pages/World';
 
 import './App.css';
 
@@ -19,6 +19,7 @@ function App() {
       setState(data)
     })
   }, [])
+  const array = Object.values(state).map((el) => el.All);
 
   return (
     <div className="App">
@@ -26,9 +27,9 @@ function App() {
       <Nav />
       <div className="container">
         <div className="page">
-          <Route path="/" render={() => <Description items={state} />} exact />
-          <Route path="/world" render={() => <World items={state} />} exact />
-          <Route path="/country" render={() => <Country items={state} />} exact />
+          <Route path="/" render={() => <Description items={array} />} exact />
+          <Route path="/world" render={() => <World items={array} />} exact />
+          <Route path="/country" render={() => <Country items={array} />} exact />
           {/* <Data items={state} /> */}
         </div>
       </div>
