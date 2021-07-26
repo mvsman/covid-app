@@ -1,10 +1,11 @@
 function SelectionList({ arr, handleOnClick, selectionItem }) {
+  const obj = arr[0];
   return (
     <div className="selection-list">
       {arr.map((elem) => (
         <div className="selection-item" key={elem.abbreviation}>
           <button className="selection-btn" type="button" onClick={() => handleOnClick(elem)}>
-            <span>{elem.country}</span>
+            <span>{elem.country ? elem.country : obj.country}</span>
             <span>
               {selectionItem(elem) && (
                 <img

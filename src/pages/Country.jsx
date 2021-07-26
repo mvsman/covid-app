@@ -72,7 +72,7 @@ function Country({ items, multiSelect = false }) {
             />
           )}
         </div>
-        <CountryInfo selection={selection} arr={items} />
+        <CountryInfo selection={selection} arr={filterArr} />
       </div>
       <div>
         <CovidInfo selection={selection} arr={filterArr} />
