@@ -1,6 +1,6 @@
 {
   "homepage": "https://mvsman.github.io/covid-app",
-  "name": "shop",
+  "name": "covid-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
