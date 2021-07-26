@@ -30,9 +30,9 @@ function App() {
       <Header />
       <Nav />
       <div className="container">
-        <Route path={process.env.PUBLIC_URL + '/'} render={() => <Description items={array} />} exact />
-        <Route path={process.env.PUBLIC_URL + '/world'} render={() => <World fetchUrl={requests.fetchConfirmed} fetchUrl2={requests.fetchDeaths} fetchUrl3={requests.fetchRecovered}/>} exact />
-        <Route path={process.env.PUBLIC_URL + '/country'} render={() => <Country items={array} />} exact />
+        <Route path={'/'} render={() => <Description items={array} />} exact />
+        <Route path={'/world'} render={() => <World fetchUrl={requests.fetchConfirmed} fetchUrl2={requests.fetchDeaths} fetchUrl3={requests.fetchRecovered}/>} exact />
+        <Route path={'/country'} render={() => <Country items={array} />} exact />
       </div>
     </div>
   );
