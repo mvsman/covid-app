@@ -17,12 +17,6 @@ function Country({ items, multiSelect = false }) {
       } else if (multiSelect) {
         setSelection([...selection, elem]);
       }
-    } else {
-      let selectionAfterRemove = selection;
-      selectionAfterRemove = selectionAfterRemove.filter(
-        (cur) => cur.abbreviation !== elem.abbreviation,
-      );
-      setSelection([...selectionAfterRemove]);
     }
   }
 
@@ -57,7 +51,7 @@ function Country({ items, multiSelect = false }) {
           onKeyPress={() => toggle(!open)}
           onClick={() => toggle(!open)}
           ref={ref}>
-          {selection.length ? selection.map((elem) => elem.country) : 'menu'}
+          {selection.length ? selection.map((elem) => elem.country) : 'Search'}
           <svg
             className={open ? '' : 'rotated'}
             width="8"
@@ -78,7 +72,7 @@ function Country({ items, multiSelect = false }) {
             />
           )}
         </div>
-        <CountryInfo selection={selection} />
+        <CountryInfo selection={selection} arr={items} />
       </div>
       <div>
         <CovidInfo selection={selection} />
@@ -87,15 +81,4 @@ function Country({ items, multiSelect = false }) {
   );
 }
 
-/* {worldArr.map(
-        (elem) =>
-          elem.population > 7e9 && (
-            <div>
-              <div>{elem.population}</div>
-              <div>{elem.confirmed}</div>
-              <div>{elem.recovered}</div>
-              <div>{elem.deaths}</div>
-            </div>
-          ),
-      )} */
 export default Country;

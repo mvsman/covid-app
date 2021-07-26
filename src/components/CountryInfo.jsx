@@ -9,7 +9,8 @@ function CountryInfo({ selection }) {
             <p key={i + 10}>Continent: {elem.continent}</p>
             <p key={i + 11}>Location: {elem.location}</p>
             <p key={i + 12}>
-              Square area: {elem.sq_km_area}km<sup>2</sup>
+              Square area: {elem.sq_km_area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} km
+              <sup>2</sup>
             </p>
           </div>
         ))}

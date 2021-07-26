@@ -97,15 +97,6 @@ img {
   color: grey;
 }
 
-.page {
-  width: 100%;
-  min-height: 500px;
-  padding: 15px 30px;
-  background-color: #fff;
-  box-shadow: 0px 0px 2px 0px #000;
-  border-radius: 7px;
-}
-
 .description p {
   margin: 20px 0px;
   text-align: justify;
@@ -120,7 +111,10 @@ img {
   margin-right: 30px;
   padding-right: 30px;
   padding-top: 30px;
-  border-right: 1px solid rgb(190, 190, 190);
+  box-shadow: 0px 0px 2px 0px #000;
+  border-radius: 7px;
+  background-color: #fff;
+  padding-left: 30px;
 }
 
 .search-form {
@@ -175,30 +169,42 @@ img {
 }
 
 .info {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.info-item {
-  font-weight: bold;
-  font-size: 21px;
-  width: 50%;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  padding-left: 10px;
+.info__item {
+  width: 60%;
+  max-height: fit-content;
   margin-bottom: 30px;
-  border-bottom: 1px solid #808080;
+  margin-left: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 2px 0px #000;
+}
+.info__item-title {
+  font-size: 19px;
+  font-weight: bold;
+  display: block;
+  margin: 10px;
+}
+.info__item-elem {
+  font-size: 30px;
+  display: block;
+  color: #636363;
+  margin: 10px;
 }
 .population {
-  color: #0095ff;
+  border-top: 2px solid #0095ff;
 }
 .confirmed {
-  color: #ce0000;
+  border-top: 2px solid #ce0000;
 }
 .recovered {
-  color: #00b300;
+  border-top: 2px solid #00b300;
 }
 .deaths {
-  color: #888888;
+  border-top: 2px solid #888888;
 }
 
 .selection {
@@ -245,4 +251,27 @@ img {
 }
 .rotated {
   transform: rotate(180deg);
+}
+
+.statistic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statistic__info {
+  width: 20%;
+}
+
+.statistic__item {
+  max-height: fit-content;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 2px 0px #000;
+}
+
+.info__item-day {
+  margin: 10px;
 }
