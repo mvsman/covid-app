@@ -80,27 +80,21 @@ function World({ fetchUrl, fetchUrl2, fetchUrl3 }) {
       <div className="statistic__info">
         <div className="statistic__item confirmed">
           <span className="info__item-title">Confirmed</span>
-          <span className="info__item-elem">
-            {data[200].Confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-          </span>
+          <span className="info__item-elem">{data[200].Confirmed}</span>
           <span className="info__item-day">
             + {data[200].Confirmed - data[199].Confirmed} per day
           </span>
         </div>
         <div className="statistic__item recovered">
           <span className="info__item-title">Recovered</span>
-          <span className="info__item-elem">
-            {data[200].Recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-          </span>
+          <span className="info__item-elem">{data[200].Recovered}</span>
           <span className="info__item-day">
             + {data[200].Recovered - data[199].Recovered} per day
           </span>
         </div>
         <div className="statistic__item deaths">
           <span className="info__item-title">Deaths</span>
-          <span className="info__item-elem">
-            {data[200].Deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-          </span>
+          <span className="info__item-elem">{data[200].Deaths}</span>
           <span className="info__item-day">+ {data[200].Deaths - data[199].Deaths} per day</span>
         </div>
       </div>
