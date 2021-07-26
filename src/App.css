@@ -325,6 +325,7 @@ img {
   }
   .info__item {
     width: 65%;
+    height: 90px;
   }
   .page__country-search {
     margin: 0;
@@ -347,6 +348,9 @@ img {
   }
 }
 @media (max-width: 390px) {
+  .header {
+    font-size: 14px;
+  }
   .page__country {
     display: block;
   }
