@@ -2,7 +2,7 @@ function CountryInfo({ selection, arr }) {
   const obj = arr[0];
   return (
     <div>
-      {selection ? (
+      {selection.length ? (
         selection.map((elem, i) => (
           <div className="info-country">
             <p key={i + 8}>Country: {elem.country}</p>
